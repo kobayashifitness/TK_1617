@@ -19,6 +19,7 @@ RailsMuscle::Application.routes.draw do
   resources :samples
   resources :articles
   resources :messages
+  resources :profiles
 
   get '/:date/diary' => 'homes#diary', as: 'diary_home'
   get '/diary_all' => 'homes#diary_all'
