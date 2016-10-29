@@ -27,7 +27,15 @@ function SetOrderId() {
       <%= link_to "/", { :class => "list-group-item" } do %>
       <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
       <% end %>
-
+      
+      <%= link_to "/profile", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール 
+      <% end %> 
+      
+      <%= link_to "/search", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 検索 
+      <% end %>
+      
       <%= link_to "/ranking", { :class => "list-group-item" } do %>
       <span class="glyphicon glyphicon-king" aria-hidden="true"></span> ランキング
       <% end %>
