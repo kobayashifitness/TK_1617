@@ -6,4 +6,8 @@ class Profile < ActiveRecord::Base
   has_many :muscle_masses
   has_many :goods
 
+  mount_uploader :image, ProfileImageUploader
+
+  validates :name, presence: true
+
 end

@@ -15,3 +15,11 @@
 /log/*.log
 /tmp
 /vendor/cache
+
+# Ignore swp file
+.*.swp
+*~
+
+# Ignore uploaded files
+public/uploads/*
+

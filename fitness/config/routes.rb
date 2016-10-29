@@ -19,6 +19,7 @@ RailsMuscle::Application.routes.draw do
   resources :samples
   resources :articles
   resources :messages
+  resources :profiles
 
   get '/chat' => 'messages#chat'
   get '/:date/diary' => 'homes#diary', as: 'diary_home'
@@ -26,7 +27,6 @@ RailsMuscle::Application.routes.draw do
   get '/wiki' => 'homes#wiki'
   get '/graph' => 'graphs#index'
   get '/ranking' => 'ranking#index'
-  get "profiles/new"
   get '/:term' => 'homes#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
