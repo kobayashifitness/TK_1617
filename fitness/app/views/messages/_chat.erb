@@ -1,12 +1,14 @@
 <div class="chatmessaage">
   <h2>
-  <% (@messages).each do |message|%>
-    <div>
-      <%if message.user_id == current_user.id %>
-        <br><span class="pull-left label label-info"><%= message.message%></span></br>
-      <%else%><br><span class="pull-right label label-success"><%= message.message%></span></br>
-      <%end%>
-    </div>
-  <% end %>
+  <%if @messages != nil%>
+    <% (@messages).each do |message|%>
+      <div>
+        <%if message.user_id == current_user.id %>
+          <br><span class="pull-left label label-info"><%= message.message%></span></br>
+        <%else%><br><span class="pull-right label label-success"><%= message.message%></span></br>
+        <%end%>
+      </div>
+    <% end %>
+  <%end%>
   </h2>
 </div>
