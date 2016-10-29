@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to profiles_path, class: 'btn btn-default' do %>
+  <%= link_to root_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
@@ -7,7 +7,64 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show profile</h1>
+	<div class="container">
+    <h1><%= @profile.name %>'s profile</h1>
+    <div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="col-xs-9 col-xs-offset-1">
+						<% if @profile.image? %><br>
+							<%= image_tag @profile.image.url, :size => '250x250', :class => 'img-responsive' %>
+						<% end %>
+						<h3 class="text-center"><%= @profile.name %></h3>
+						<div class="text-center">
+							<div class="btn-group" data-toggle="buttons">
+								<button type="button" class="btn btn-success btn-sm"><h5>Good!</h5></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<br />
+					<div class="row">
+						<div class="col-md-1">
+							<h3><i class="glyphicon glyphicon-map-marker"></i></h3>
+						</div>
+						<div class="col-md-7">
+							<h3 style="word-wrap: break-word"><cite title="<%= @profile.address %>"><%= @profile.address %></cite></h3>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-1">
+							<h3><i class="glyphicon glyphicon-user"></i></h3>
+						</div>
+						<div class="col-md-7">
+							<h3><%= @profile.sex%></h3>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-1">
+							<h3><i class="glyphicon glyphicon-gift"></i></h3>
+						</div>
+						<div class="col-md-7">
+							<h3><%= @profile.birthday %></h3>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-1">
+							<h3><i class="glyphicon glyphicon-comment"></i></h3>
+						</div>
+						<div class="col-md-7">
+							<p class="lead" style="word-wrap: break-word"><%= @profile.comment %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
 </div>
 
 <dl class="dl-horizontal">

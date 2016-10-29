@@ -18,8 +18,7 @@
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @profiles) do |profile| %>
-    
+			<%= content_tag_for(:tr, @profiles) do |profile| %>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
