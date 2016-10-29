@@ -1,8 +1,14 @@
-class MessagesController < ApplicationController
+ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
   # GET /messages.json
+  
+  def chat
+  	@messages = Message.where(user_id: current_user.id)
+	@chatusers = Profile.where(user_id: )
+  end
+  
   def index
 
      @sent_user = 2
@@ -75,11 +81,7 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
 
     def message_params
-<<<<<<< HEAD
 	    params.require(:message).permit(:user_id, :sent_userid, :message)
-=======
-      params.require(:message).permit(:user_id,:sent_userid,:message)
->>>>>>> 560d12f86a09ec5afd0723a8938feec1b946a51d
     end
 
 end

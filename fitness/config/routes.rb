@@ -20,6 +20,7 @@ RailsMuscle::Application.routes.draw do
   resources :articles
   resources :messages
 
+  get '/chat' => 'messages#chat'
   get '/:date/diary' => 'homes#diary', as: 'diary_home'
   get '/diary_all' => 'homes#diary_all'
   get '/wiki' => 'homes#wiki'
