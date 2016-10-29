@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022115322) do
+ActiveRecord::Schema.define(version: 20161029021140) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blocks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "block_userid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,6 +40,13 @@ ActiveRecord::Schema.define(version: 20161022115322) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "span"
+  end
+
+  create_table "goods", force: true do |t|
+    t.integer  "profile_id"
+    t.integer  "sent_userid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "heights", force: true do |t|
@@ -54,6 +68,14 @@ ActiveRecord::Schema.define(version: 20161022115322) do
   end
 
   create_table "input_datetimes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "sent_userid"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
