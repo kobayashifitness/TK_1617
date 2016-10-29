@@ -47,4 +47,3 @@ end
 CSV.foreach('db/message.csv') do |row|
 	Message.create(:id => row[0], :user_id => row[1], :sent_userid => row[2], :message => row[3])
 end
-				  
