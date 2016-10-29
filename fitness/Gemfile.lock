@@ -42,6 +42,12 @@ GEM
       momentjs-rails (>= 2.8.1)
     bower-rails (0.11.0)
     builder (3.2.2)
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     chartkick (2.1.1)
     choice (0.2.0)
     coderay (1.1.1)
@@ -83,6 +89,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mimemagic (0.3.2)
     minitest (5.9.1)
     momentjs-rails (2.15.1)
       railties (>= 3.1)
@@ -131,6 +138,7 @@ GEM
     ref (2.0.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rmagick (2.16.0)
     ruby-graphviz (1.2.2)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -180,6 +188,7 @@ DEPENDENCIES
   bootstrap-timepicker-rails
   bootstrap3-datetimepicker-rails
   bower-rails (~> 0.11.0)
+  carrierwave
   chartkick
   coderay
   coffee-rails (~> 4.0.0)
@@ -196,6 +205,7 @@ DEPENDENCIES
   rails-erd
   rails4-autocomplete
   redcarpet (~> 2.3.0)
+  rmagick
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3
