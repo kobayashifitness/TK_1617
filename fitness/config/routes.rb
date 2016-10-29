@@ -10,11 +10,6 @@ RailsMuscle::Application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-
-
-
-
-
   root to: 'homes#index'
 
   resources :goals
