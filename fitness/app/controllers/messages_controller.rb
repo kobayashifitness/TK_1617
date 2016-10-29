@@ -5,8 +5,9 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
   #  @sent_user = parames(:id)	  
-  #  @messages = Message.where(user_id:=>current_userid and sent_userid:=>)
-    @messages = Messages.all
+  #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
+  #  @messages = Message.all
+     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
   end
 
   # GET /messages/1
