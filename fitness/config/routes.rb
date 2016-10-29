@@ -21,13 +21,14 @@ RailsMuscle::Application.routes.draw do
   resources :messages
   resources :profiles
 
+  get '/chat' => 'messages#chat'
   get '/:date/diary' => 'homes#diary', as: 'diary_home'
   get '/diary_all' => 'homes#diary_all'
   get '/wiki' => 'homes#wiki'
   get '/graph' => 'graphs#index'
   get '/ranking' => 'ranking#index'
   get '/:term' => 'homes#index'
-
+  get '/chat' => 'messages#chat'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

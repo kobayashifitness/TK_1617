@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+<div class="list-group">
+	<a href="#" class="list-group-item active">メッセージ一覧</a>
+	<% @all_diary.each do |diary| %>
+	<a href="#" class="list-group-item">
+		<legend>
+			<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+			<span><%= diary.diary_date.strftime("%Y年 %m月 %d日") %></span>
+		</legend>
+		<h2><%= Event.all.find(diary.event_id).event_name %></h2>
+		<h3>
+			負荷  <%= diary.weight %> kg  を <%= diary.num %>回×<%= diary.set_num %>セット
+		</h3>
+	</a>
+	<% end %>
+</div>
+
+							
+=======
+こんにちは
+>>>>>>> 455b4dfe40078b7394f04932b27f4708bf44a6c0

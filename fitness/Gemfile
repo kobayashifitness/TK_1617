@@ -77,3 +77,6 @@ gem 'omniauth-twitter'
 # for image upload and resize
 gem 'carrierwave'
 gem 'rmagick'
+
+gem 'kaminari'
+gem 'jquery-turbolinks'

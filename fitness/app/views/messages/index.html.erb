@@ -1,29 +1,18 @@
-<div class="page-header">
-  <%= link_to new_message_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Message
-  <% end %>
-  <h1>Listing messages</h1>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%= content_tag_for(:tr, @messages) do |message| %>
-
-        <td><%= link_to message.message, message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+    <h1 class="panel-title">hogeさんからのメッセージ</h1>
+	</div>
+  <div class="panel-body">
+     <div class="page">
+      <%= render 'chat' %>
+     </div>
+      <%= paginate @messages %>
+	  <h2>
+		  <%= form_for @message do |message|%>
+		  <span class="pull-right" ><%= message.text_field :message%></span>
+		  <%= message.hidden_field :sent_userid, :value => current_user.id%>
+		  <%= message.hidden_field :user_id, :value => @sent_userid %>
+		  <span class="pull-right" ><%= message.submit "送信"%></span>
+	  <% end %>
+	  </h2>
+  </div>

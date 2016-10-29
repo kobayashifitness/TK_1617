@@ -30,4 +30,5 @@
 //= require bootstrap-timepicker
 //= require jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon
 //= require jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-ja
+//= require jquery.infinitescroll
 $(document).on('turbolinks:load',function(){  $('.datetimepicker').datetimepicker()});

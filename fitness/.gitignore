@@ -16,8 +16,9 @@
 /tmp
 /vendor/cache
 
-# Ignore vim swp file
+# Ignore swp file
 .*.swp
+*~
 
 # Ignore uploaded files
 public/uploads/*
