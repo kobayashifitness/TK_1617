@@ -8,9 +8,17 @@ class MessagesController < ApplicationController
      @sent_user = 2
   #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
   #  @messages = Message.all
-     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
+     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2").page(params[:page])
      @message = Message.new()
   end
+
+  def chat
+    redirect_to '/wiki'
+  end
+  # def messagelist
+  #   @messages = Message.where(user_id: current_user.id)
+  #   #@message_user = User.where(id: @messages.sent_userid)
+  # end
 
   # GET /messages/1
   # GET /messages/1.json
@@ -75,11 +83,9 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
 
     def message_params
-<<<<<<< HEAD
+
 	    params.require(:message).permit(:user_id, :sent_userid, :message)
-=======
-      params.require(:message).permit(:user_id,:sent_userid,:message)
->>>>>>> 560d12f86a09ec5afd0723a8938feec1b946a51d
+
     end
 
 end

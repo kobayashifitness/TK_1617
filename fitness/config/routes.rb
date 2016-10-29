@@ -27,7 +27,7 @@ RailsMuscle::Application.routes.draw do
   get '/ranking' => 'ranking#index'
   get "profiles/new"
   get '/:term' => 'homes#index'
-
+  get '/chat' => 'messages#chat'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
