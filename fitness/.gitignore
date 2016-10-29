@@ -18,3 +18,7 @@
 
 # Ignore vim swp file
 .*.swp
+
+# Ignore uploaded files
+public/uploads/*
+
