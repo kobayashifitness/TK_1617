@@ -3,10 +3,13 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <%= link_to edit_profile_path(@profile), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+  <% if @session_id == current_user.id %>
+    <%= link_to edit_profile_path(@profile), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
   <% end %>
+
 	<div class="container">
     <h1><%= @profile.name %>'s profile</h1>
     <div class="container">

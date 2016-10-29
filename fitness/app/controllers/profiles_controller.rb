@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     @profile = Profile.find(params[:id])
+    @session_id = params[:id].to_i
   end
 
   # GET /profiles/new
