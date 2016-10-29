@@ -45,6 +45,19 @@ function SetOrderId() {
       <% end %>
     </div>
 
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">マイプロフィール</h3>
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-offset-4 col-xs-8">
+              <a class="btn btn-info btn-block" href="/diary_all" style="white-space: normal">プロフィールを編集する</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
 
     <div class="panel panel-primary">
       <div class="panel-heading">
