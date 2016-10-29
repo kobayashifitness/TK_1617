@@ -18,7 +18,7 @@ CSV.foreach('db/event.csv') do |row|
 end
 
 require "csv"
-CSV.foreach('db/muscle_of_event.csv') do |row|
+CSV.foreach('db/Muscle_of_event.csv') do |row|
   MuscleOfEvent.create(:event_id => row[1], :muscle_id => row[2])
 
 end
@@ -36,9 +36,13 @@ CSV.foreach('db/muscle_mass.csv') do |row|
 end
 
 CSV.foreach('db/users.csv') do |row|
-  User.create(:id => row[0], :created_at => row[1], :updated_at => row[2], :email => row[3], :password => row[4])
+  User.create(:id => row[0], :email => row[1], :password => row[2])
 end
 
 CSV.foreach('db/profile.csv') do |row|
-  Profile.create(:user_id => row[1])
+  Profile.create(:id => row[0], :name => row[1], :sex => row[2], :birthday => row[3], :user_id => row[4], :image => row[5], :adress => row[6], :comment => row[7])
+end
+
+CSV.foreach('db/message.csv') do |row|
+  Message.create(:id => row[0], :user_id => row[1], :sent_userid => row[2], :message => row[3])
 end
