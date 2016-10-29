@@ -1,0 +1,47 @@
+@import "bootstrap-variables.scss";
+@import "bootstrap-sprockets.scss";
+@import "bootstrap.scss";
+
+body {
+  background: url("/images/bg.jpg") no-repeat center top / cover;
+  padding-top: $navbar-height + 10px;
+}
+
+.page-header {
+  a.btn {
+    float: right;
+  }
+
+  a.btn + a.btn {
+    margin-right: 8px;
+  }
+}
+
+input[type="radio"], input[type="checkbox"] {
+  width: initial;
+  height: initial;
+  margin-top: 7px;
+}
+
+.carousel-indicators .active {
+  height: auto;;
+  width: 100px;
+  color: #ffffff;
+  background-color: #337ab7;
+  border-radius: 2px;
+}
+
+.carousel-indicators li {
+  text-indent: 0px;
+  height: auto;
+  width: 100px;
+  border: 2px solid #337ab7;
+  border-radius: 2px;
+  color: #337ab7;
+  background-color: #000 \9;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.label{
+  display: inline-block;
+}

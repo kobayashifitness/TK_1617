@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to samples_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_sample_path(@sample), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show sample</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Moji:</dt>
+  <dd><%= @sample.moji %></dd>
+
+  <dt>Kazu:</dt>
+  <dd><%= @sample.kazu %></dd>
+
+  <dt>Hizuke:</dt>
+  <dd><%= @sample.hizuke %></dd>
+
+</dl>

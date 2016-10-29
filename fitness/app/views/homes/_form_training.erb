@@ -1,0 +1,85 @@
+<div class="item active" style="padding: 80px 10% 10% 10%;">
+  <legend>トレーニング</legend>
+
+  <%= form_for(@muscle_diary, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @muscle_diary.errors.any? %>
+  <div class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4><%= pluralize(@muscle_diary.errors.count, "error") %> prohibited this goal from being saved:</h4>
+    <ul>
+      <% @muscle_diary.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "日付", class: "col-sm-2 control-label" %>
+    <div>
+      <%= fields_for @input_datetime_diary do |input_datetime| %>
+      <div class="col-sm-10">
+        <%= input_datetime.text_field :datetime,  :value =>  @first_input_datetime,class: 'form-control datetimepicker' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "メニュー", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= fields_for @event do |event| %>
+      <%= event.text_field :event_name, id: "event_name_field",class: "form-control" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="slider_field">
+      <%= f.label "重量", class: "col-sm-2 control-label" %>
+
+      <div class="col-sm-6">
+        <div id="slider" style="margin: 10px 0px 10px 0px"></div>
+      </div>
+      <div class ="col-sm-4 ">
+        <%= f.text_field :weight ,:value  => @muscle_diary.weight, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <script>
+  $('#slider').slider({
+    value: <%= @muscle_diary.weight%>,
+    min: 0,
+    max: 150,
+    step: 5,
+    animate: 'fast',
+    slide: function(event, ui){
+      $('#muscle_diary_weight').val(ui.value);
+    }
+  });
+  </script>
+
+  <div class="form-group">
+    <%= f.label "回数", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.select :num, (0..20), {}, class: "form-control" %>
+    </div>
+    <%= f.label "セット数", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.select :set_num, (0..10), {}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "メモ", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :note, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "日記をつける", class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+
+</div>

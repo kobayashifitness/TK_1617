@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">知識</h3>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <%= link_to new_article_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      新規作成
+      <% end %>
+      <h1>筋トレ知識の共有</h1>
+
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <td><%= link_to '筋トレメニュー一覧' , '/wiki'%></td>
+          <td></td>
+          <td></td>
+          <%= content_tag_for(:tr, @articles) do |article| %>
+          <td><%= link_to  article.title , article %></td>
+          <td><%= link_to '編集', edit_article_path(article) %></td>
+          <td><%= link_to '削除', article, method: :delete, data: { confirm: '削除しますか?' } %></td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

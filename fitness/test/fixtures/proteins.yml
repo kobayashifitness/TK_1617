@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  protein_intake: 1
+  datetime: MyString
+
+two:
+  user_id: 1
+  protein_intake: 1
+  datetime: MyString

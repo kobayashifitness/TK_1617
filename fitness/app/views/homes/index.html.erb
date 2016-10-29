@@ -1,0 +1,130 @@
+<script>
+//dateの値からURLを生成する関数
+function jump(){
+  var form = document.forms.mainForm;
+  var url = '/' + form.diaryday.value + '/diary';
+  location.href = url;
+}
+//dateの初期値に今日の日付を入れる関数
+function SetOrderId() {
+  var myDate = new Date();
+  var Year = new String(myDate.getFullYear());
+  var Month = new String(myDate.getMonth()+1);
+  var Day = new String(myDate.getDate());
+  if ( Day.length == 1 ) Day = "0" + Day;
+  document.forms.mainForm.diaryday.value = Year + "-" + Month + "-" + Day;
+}
+</script>
+
+<% if user_signed_in? %>
+テスト
+<div class="row">
+
+  <div class="col-sm-3">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">筋肉リンク</a>
+
+      <%= link_to "/", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+      <% end %>
+
+      <%= link_to "/ranking", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-king" aria-hidden="true"></span> ランキング
+      <% end %>
+
+      <%= link_to "/graph", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> データ
+      <% end %>
+
+      <%= link_to "/articles", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-education" aria-hidden="true"></span> 知識
+      <% end %>
+
+      <%= link_to "/users/edit", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 設定
+      <% end %>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">筋肉日記を見る</h3>
+      </div>
+      <div class="panel-body">
+        <form name="mainForm">
+          <div class="form-group row">
+            <label for="input-date"  class="col-xs-4 col-form-label">日付</label>
+            <div class="col-xs-8"><input type = "date" min="2014-01-01" max="2050-12-31" name="diaryday" value ="<%= @date %>" class="form-control input-sm"></div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-offset-4 col-xs-8">
+              <input class="btn btn-primary btn-block" name="link" type=button value="日記を見る" onclick="jump()"  style="white-space: normal">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-offset-4 col-xs-8">
+              <a class="btn btn-info btn-block" href="/diary_all" style="white-space: normal">トレーニング一覧</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">筋肉コンディション</h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'muscle_condition'%>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">筋肉目標</h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'form_goal'%>
+      </div>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">データ入力</h3>
+      </div>
+
+      <div id="carousel-data-input" class="carousel slide" data-ride="carousel" data-interval="false" style="min-height: 560px;">
+        <ol class="carousel-indicators" style="top: 20px; height: 40px">
+          <li data-target="#carousel-data-input" data-slide-to="0" class="">プロフィール</li>
+          <li data-target="#carousel-data-input" data-slide-to="1" class="active">トレーニング</li>
+          <li data-target="#carousel-data-input" data-slide-to="2" class="">食事管理</li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+          <%= render 'form_profile' %>
+          <%= render 'form_training' %>
+          <%= render 'form_diet' %>
+        </div>
+
+        <a class="left carousel-control" href="#carousel-data-input" role="button" data-slide="prev" style="width: 8%">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-data-input" role="button" data-slide="next" style="width: 8%">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<% else %>
+<div class="starter-template">
+  <h1>筋トレ日記にようこそ！</h1>
+  <p class="lead">デカい、キレてる、ナイスバルク。</p>
+  <a class="btn btn-primary btn-lg" href="/users/sign_in" role="button">サインイン</a>
+</div>
+<% end %>

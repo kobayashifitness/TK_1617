@@ -1,0 +1,38 @@
+<%= form_for(@goal, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <div class="form-group">
+    <%= f.label "今年", class: "col-sm-2 control-label" %>
+    <div class="col-sm-7">
+      <%= f.text_field :goal, :value =>@year_goal.goal, class: " form-control" %>
+      <%= f.hidden_field :span, :value => 'year'%>
+    </div>
+    <div class="col-sm-3">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for(@goal, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <div class="form-group">
+    <%= f.label "今月", class: "col-sm-2 control-label" %>
+    <div class="col-sm-7">
+      <%= f.text_field :goal, :value => @month_goal.goal, class: " form-control" %>
+      <%= f.hidden_field :span, :value => 'month'%>
+    </div>
+    <div class="col-sm-3">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for(@goal, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <div class="form-group">
+    <%= f.label "今週", class: "col-sm-2 control-label" %>
+    <div class="col-sm-7">
+      <%= f.text_field :goal, :value => @week_goal.goal, class: " form-control" %>
+      <%= f.hidden_field :span, :value => 'week'%>
+    </div>
+    <div class="col-sm-3">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

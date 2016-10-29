@@ -1,0 +1,73 @@
+<div class="item" style="padding: 80px 10% 10% 10%;">
+  <legend>プロフィール</legend>
+
+  <%= form_for(@muscle_mass, html: { class: "form-horizontal", role: "form" }) do |f| %>
+
+  <div class="form-group">
+    <%= f.label "日付", class: "col-sm-2 control-label" %>
+    <div>
+      <%= fields_for @input_datetime do |input_datetime| %>
+      <div class="col-sm-10">
+        <%= input_datetime.text_field :datetime,  :value =>  @first_input_datetime,class: 'form-control datetimepicker' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "身長", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= fields_for @height do |h| %>
+      <%= h.number_field :height, placeholder: "身長 [cm]", class: "form-control" %>
+      <% end %>
+    </div>
+    <%= f.label "体重", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= fields_for @weight do |w| %>
+      <%= w.number_field :weight, step: 0.1, placeholder: "体重 [kg]", class: "form-control" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :muscle_mass, placeholder: "全体の筋肉量 [kg]", class: "form-control" %>
+    </div>
+    <%= f.label "脂肪量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :fat, placeholder: "脂肪量 [kg]", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "左腕筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :l_arm, placeholder: "左腕の筋肉量 [kg]", class: "form-control" %>
+    </div>
+    <%= f.label "右腕筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :r_arm, placeholder: "右腕の筋肉量 [kg]", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "左足筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :l_leg, placeholder: "左足の筋肉量 [kg]", class: "form-control" %>
+    </div>
+    <%= f.label "右足筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.number_field :r_leg, placeholder: "右足の筋肉量 [kg]", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "体幹筋肉量", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :body, placeholder: "体幹の筋肉量 [kg]", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "データを入力", class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>

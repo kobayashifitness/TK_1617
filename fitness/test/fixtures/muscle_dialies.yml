@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  event_id: 1
+  wight: 1.5
+  num: 1
+  set_num: 1
+  date: MyString
+  note: MyString
+
+two:
+  user_id: 1
+  event_id: 1
+  wight: 1.5
+  num: 1
+  set_num: 1
+  date: MyString
+  note: MyString

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile_id: 1
+  muscle_mass: 1.5
+  l_arm: 1.5
+  r_arm: 1.5
+  l_leg: 1.5
+  r_leg: 1.5
+  body: 1.5
+  fat: 1.5
+  datetime: MyString
+
+two:
+  profile_id: 1
+  muscle_mass: 1.5
+  l_arm: 1.5
+  r_arm: 1.5
+  l_leg: 1.5
+  r_leg: 1.5
+  body: 1.5
+  fat: 1.5
+  datetime: MyString

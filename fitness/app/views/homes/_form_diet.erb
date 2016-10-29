@@ -1,0 +1,66 @@
+<div class="item" style="padding: 80px 10% 10% 10%;">
+  <legend>食事管理</legend>
+
+  <%= form_for(@protein, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @protein.errors.any? %>
+  <div class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4><%= pluralize(@protein.errors.count, "error") %> prohibited this goal from being saved:</h4>
+    <ul>
+      <% @protein.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "日付", class: "col-sm-2 control-label" %>
+    <div>
+      <%= fields_for @input_datetime_protein do |input_datetime| %>
+      <div class="col-sm-10">
+        <%= input_datetime.text_field :datetime,  :value =>  @first_input_datetime,class: 'form-control datetimepicker' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="slider_field">
+      <%= f.label "タンパク質量", class: "col-sm-2 control-label" %>
+
+      <div class="col-sm-7">
+        <div id="slider_protein"></div>
+      </div>
+      <div class ="col-sm-3 ">
+        <%= f.text_field :protein_intake, placeholder: "摂取したタンパク質 [g]", value: @protein.protein_intake = 0 ,class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <script>
+  $('#slider_protein').slider({
+    value:  <%= @protein.protein_intake %>,
+    min: 0,
+    max: 50,
+    step: 1,
+    animate: 'slow',
+    slide: function(event, ui){
+      $('#protein_protein_intake').val(ui.value);
+    }
+  });
+  </script>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "日記をつける", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div>
+    <h2>
+      <p>1回の摂取タンパク質量目安：30g</p>
+      <p>摂取間隔目安：3時間</p>
+    </h1>
+  </div>
+
+  <% end %>
+</div>

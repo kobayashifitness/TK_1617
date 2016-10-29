@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: 1
+  mymenu_id: 1
+  wight: 1.5
+  num: 1
+  set_num: 1
+  day: MyString
+
+two:
+  event_id: 1
+  mymenu_id: 1
+  wight: 1.5
+  num: 1
+  set_num: 1
+  day: MyString

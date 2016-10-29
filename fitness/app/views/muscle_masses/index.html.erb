@@ -1,0 +1,27 @@
+<div class="page-header">
+  <%= link_to new_muscle_mass_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Muscle mass
+  <% end %>
+  <h1>Listing muscle_masses</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @muscle_masses) do |muscle_mass| %>
+            <td><%= link_to 'Show', muscle_mass %></td>
+        <td><%= link_to 'Edit', edit_muscle_mass_path(muscle_mass) %></td>
+        <td><%= link_to 'Destroy', muscle_mass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

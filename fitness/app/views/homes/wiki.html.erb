@@ -1,0 +1,47 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">メニュー</h3>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h1>筋トレメニュー　一覧</h1>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th width="100px"></th>
+            <th>バーベル</th>
+            <th>ダンベル</th>
+            <th>マシン</th>
+            <th>自重</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= content_tag_for(:tr, @muscles) do |muscle| %>
+          <td><%= muscle.part %></td>
+
+          <td><% @events = muscle.events.where(event_class:"バーベル").all %><% @events.each do |event| %>
+            <p><%= event.event_name %></p>
+          <% end %></td>
+
+          <td><% @events = muscle.events.where(event_class:"ダンベル").all %><% @events.each do |event| %>
+            <p><%= event.event_name %></p>
+          <% end %></td>
+
+          <td><% @events = muscle.events.where(event_class:"マシン").all %><% @events.each do |event| %>
+            <p><%= event.event_name %></p>
+          <% end %></td>
+
+          <td><% @events = muscle.events.where(event_class:"自重").all %><% @events.each do |event| %>
+            <p><%= event.event_name %></p>
+          <% end %></td>
+
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

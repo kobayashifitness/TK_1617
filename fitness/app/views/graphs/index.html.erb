@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">グラフ</h3>
+  </div>
+  <div class="panel-body">
+
+    <legend>体重の傾向</legend>
+    <% if !@weights.empty? %>
+    <%= line_chart( @graph_weights, min: @min_weight-1, max: @max_weight+1 ) %>
+    <% else %>
+    体重データがありません。体重を測って記録しましょう！
+    <% end %>
+  </div>
+  <div class="panel-body">
+    <legend>筋肉量と体脂肪の傾向</legend>
+    <% if !@muscle_masses.empty? %>
+    <%= area_chart [
+      { name: "体脂肪 [kg]", data: @graph_fats },
+      { name: "筋肉量 [kg]", data: @graph_muscle_masses }
+      ] %>
+      <% else %>
+      データがありません。日記で記録しましょう！
+      <% end %>
+
+    </div>
+  </div>

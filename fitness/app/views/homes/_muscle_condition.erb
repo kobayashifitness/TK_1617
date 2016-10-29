@@ -1,0 +1,80 @@
+<legend style="margin: 0px 0px 5px 0px">回復目安：3日</legend>
+<h3>
+  <% if @mune + 3.days > DateTime.now %>
+  <span class="label label-danger">胸</span>
+  <% elsif @mune + 7.days > DateTime.now %>
+  <span class="label label-success">胸</span>
+  <% else%>
+  <span class="label label-warning">胸</span>
+  <% end %>
+
+  <% if @senaka + 3.days > DateTime.now %>
+  <span class="label label-danger">背中</span>
+  <% elsif @senaka + 7.days > DateTime.now %>
+  <span class="label label-success">背中</span>
+  <% else%>
+  <span class="label label-warning">背中</span>
+  <% end %>
+
+  <% if @asi + 3.days > DateTime.now %>
+  <span class="label label-danger">足</span>
+  <% elsif @asi + 7.days > DateTime.now %>
+  <span class="label label-success">足</span>
+  <% else%>
+  <span class="label label-warning">足</span>
+  <% end %>
+</h3>
+
+<legend style="margin: 0px 0px 5px 0px">回復目安：2日</legend>
+<h3>
+  <% if @kata + 2.days > DateTime.now %>
+  <span class="label label-danger">肩</span>
+  <% elsif @kata + 7.days > DateTime.now %>
+  <span class="label label-success">肩</span>
+  <% else%>
+  <span class="label label-warning">肩</span>
+  <% end %>
+
+  <% if @nitou + 2.days > DateTime.now %>
+  <span class="label label-danger">上腕二頭筋</span>
+  <% elsif @nitou + 7.days > DateTime.now %>
+  <span class="label label-success">上腕二頭筋</span>
+  <% else%>
+  <span class="label label-warning">上腕二頭筋</span>
+  <% end %>
+
+  <% if @santou + 2.days > DateTime.now %>
+  <span class="label label-danger">上腕三頭筋</span>
+  <% elsif @santou + 7.days > DateTime.now %>
+  <span class="label label-success">上腕三頭筋</span>
+  <% else%>
+  <span class="label label-warning">上腕三頭筋</span>
+  <% end %>
+
+  <% if @hukurahagi + 2.days > DateTime.now %>
+  <span class="label label-danger">ふくらはぎ</span>
+  <% elsif @hukurahagi + 7.days > DateTime.now %>
+  <span class="label label-success">ふくらはぎ</span>
+  <% else%>
+  <span class="label label-warning">ふくらはぎ</span>
+  <% end %>
+</h3>
+
+<legend style="margin: 0px 0px 5px 0px">回復目安：1日</legend>
+<h3>
+  <% if @ab + 1.days > DateTime.now %>
+  <span class="label label-danger">腹筋</span>
+  <% elsif @ab + 7.days > DateTime.now %>
+  <span class="label label-success">腹筋</span>
+  <% else%>
+  <span class="label label-warning">腹筋</span>
+  <% end %>
+
+  <% if @zenwan + 1.days > DateTime.now %>
+  <span class="label label-danger">前腕部</span>
+  <% elsif @zenwan + 7.days > DateTime.now %>
+  <span class="label label-success">前腕部</span>
+  <% else%>
+  <span class="label label-warning">前腕部</span>
+  <% end %>
+</h3>
