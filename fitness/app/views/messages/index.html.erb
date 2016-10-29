@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">hogeさんからのメッセージ</h3>
@@ -20,4 +21,41 @@
       </div>
     </form>
   </div>
+=======
+<div class="page-header">
+  <%= link_to new_message_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Message
+  <% end %>
+  <h1>Listing messages</h1>
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @messages) do |message| %>
+<<<<<<< HEAD
+    
+        <td><%= link_to message.message , message %></td>
+=======
+
+        <td><%= link_to message.message, message %></td>
+>>>>>>> e44b4534df597b33bd6055043234bf65446d8e6f
+        <td><%= link_to 'Edit', edit_message_path(message) %></td>
+        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+>>>>>>> 997016d924bb6645402f6ac5fa1861fc5ab32240
 </div>

@@ -4,8 +4,15 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+<<<<<<< HEAD
 
     @messages = Message.all
+=======
+  #  @sent_user = parames(:id)	  
+  #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
+  #  @messages = Message.all
+     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
+>>>>>>> 997016d924bb6645402f6ac5fa1861fc5ab32240
   end
 
   # GET /messages/1
