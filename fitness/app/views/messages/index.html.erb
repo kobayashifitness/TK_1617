@@ -1,17 +1,24 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">hogeさんからのメッセージ</h3>
-  </div>
+	<div class="panel-heading">
+    <h1 class="panel-title">hogeさんからのメッセージ</h1>
+	</div>
   <div class="panel-body">
+	  <h2>
 	  <% (@messages).each do |message|%>
 		  <div>
-			  <%= message.message%>
+			  <%if message.user_id == current_user.id %>
+				  <br><span class="pull-left label label-info"><%= message.message%></span></br>
+			  <%else%><br><span class="pull-right label label-success"><%= message.message%></span></br>
+			  <%end%>
 		  </div>
 	  <% end %>
+	  </h2>
+	  <h2>
 	  <%= form_for @message do |message|%>
 		  <%= message.text_field :message%>
 		  <%= message.hidden_field :sent_userid, :value => current_user.id%>
 		  <%= message.hidden_field :user_id, :value => @sent_userid %>
 		  <%= message.submit "送信"%>
 	  <% end %>
+	  </h2>
   </div>	
