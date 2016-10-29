@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">hogeさんからのメッセージ</h3>
+  </div>
+  <div class="panel-body">
+	  <% (@messages).each do |message|%>
+		  <div>
+			  <%= message.message%>
+		  </div>
+	  <% end %>
+	  <%= form_for @message do |message|%>
+		  <%= message.text_field :message%>
+		  <%= message.hidden_field :sent_userid, :value => current_user.id%>
+		  <%= message.hidden_field :user_id, :value => @sent_userid %>
+		  <%= message.submit "送信"%>
+	  <% end %>
+  </div>	
+=======
 
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -18,3 +37,4 @@
     <% end %>
 
   </div>
+>>>>>>> 560d12f86a09ec5afd0723a8938feec1b946a51d

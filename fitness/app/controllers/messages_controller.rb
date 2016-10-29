@@ -5,7 +5,11 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
 
+<<<<<<< HEAD
+     @sent_user = 2
+=======
     @sent_user = 2
+>>>>>>> 560d12f86a09ec5afd0723a8938feec1b946a51d
   #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
   #  @messages = Message.all
      @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
@@ -75,7 +79,11 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
 
     def message_params
+<<<<<<< HEAD
+	    params.require(:message).permit(:user_id, :sent_userid, :message)
+=======
       params.require(:message).permit(:user_id,:sent_userid,:message)
+>>>>>>> 560d12f86a09ec5afd0723a8938feec1b946a51d
     end
 
 end
