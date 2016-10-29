@@ -4,15 +4,12 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-<<<<<<< HEAD
 
-    @messages = Message.all
-=======
-  #  @sent_user = parames(:id)	  
+    @sent_user = 2
   #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
   #  @messages = Message.all
      @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
->>>>>>> 997016d924bb6645402f6ac5fa1861fc5ab32240
+     @message = Message.new()
   end
 
   # GET /messages/1
@@ -76,7 +73,9 @@ class MessagesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def message_params
-      params[:message]
+      params.require(:message).permit(:user_id,:sent_userid,:message)
     end
+
 end

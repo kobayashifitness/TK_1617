@@ -1,61 +1,20 @@
-<<<<<<< HEAD
+
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">hogeさんからのメッセージ</h3>
   </div>
   <div class="panel-body">
-    <form name="mainForm">
-      <div class="form-group row">
-        <label for="input-date"  class="col-xs-4 col-form-label">日付</label>
-        <div class="col-xs-8"><input type = "date" min="2014-01-01" max="2050-12-31" name="diaryday" value ="<%= @date %>" class="form-control input-sm"></div>
-      </div>
-      <div class="form-group row">
-        <div class="col-xs-offset-4 col-xs-8">
-          <input class="btn btn-primary btn-block" name="link" type=button value="日記を見る" onclick="jump()"  style="white-space: normal">
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-xs-offset-4 col-xs-8">
-          <a class="btn btn-info btn-block" href="/diary_all" style="white-space: normal">トレーニング一覧</a>
-        </div>
-      </div>
-    </form>
+
+    <% (@messages).each do |message| %>
+    <%= message.message%>
+    <% end %>
+
+    <%= form_for @message do |message| %>
+      <%= message.text_field :message%>
+      <%= message.hidden_field :sent_userid, :value =>  current_user.id%>
+      <%= message.hidden_field :user_id, :value =>  @sent_userid %>
+      <%= message.submit "送信"%>
+
+    <% end %>
+
   </div>
-=======
-<div class="page-header">
-  <%= link_to new_message_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Message
-  <% end %>
-  <h1>Listing messages</h1>
-</div>
-
-
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%= content_tag_for(:tr, @messages) do |message| %>
-<<<<<<< HEAD
-    
-        <td><%= link_to message.message , message %></td>
-=======
-
-        <td><%= link_to message.message, message %></td>
->>>>>>> e44b4534df597b33bd6055043234bf65446d8e6f
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
->>>>>>> 997016d924bb6645402f6ac5fa1861fc5ab32240
-</div>
