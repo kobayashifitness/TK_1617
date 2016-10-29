@@ -1,9 +1,7 @@
 <div class="panel panel-primary">
-	<h1>
 	<div class="panel-heading">
     <h1 class="panel-title">hogeさんからのメッセージ</h1>
 	</div>
-	</h1>
   <div class="panel-body">
 	  <h2>
 	  <% (@messages).each do |message|%>
@@ -16,11 +14,11 @@
 	  <% end %>
 	  </h2>
 	  <h2>
-	  <%= form_for @message do |message|%>
-		  <%= message.text_field :message%>
+		  <%= form_for @message do |message|%>
+		  <span class="pull-right ><%= message.text_field :message%></span>
 		  <%= message.hidden_field :sent_userid, :value => current_user.id%>
 		  <%= message.hidden_field :user_id, :value => @sent_userid %>
-		  <%= message.submit "送信"%>
+		  <span class="pull-right ><%= message.submit "送信"%></span>
 	  <% end %>
 	  </h2>
   </div>	
