@@ -10,13 +10,23 @@
   end
   
   def index
-
-     @sent_user = 2
+  #  User.find(2).profile.name
+     @sent_userid = 1
   #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
   #  @messages = Message.all
-     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2")
+
+     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2").page(params[:page]).per(8)
+
      @message = Message.new()
   end
+
+  def chat
+    redirect_to '/wiki'
+  end
+  # def messagelist
+  #   @messages = Message.where(user_id: current_user.id)
+  #   #@message_user = User.where(id: @messages.sent_userid)
+  # end
 
   # GET /messages/1
   # GET /messages/1.json
@@ -81,7 +91,13 @@
     # Never trust parameters from the scary internet, only allow the white list through.
 
     def message_params
+<<<<<<< HEAD
 	    params.require(:message).permit(:user_id, :sent_userid, :message)
+=======
+
+	    params.require(:message).permit(:user_id, :sent_userid, :message)
+
+>>>>>>> 455b4dfe40078b7394f04932b27f4708bf44a6c0
     end
 
 end
