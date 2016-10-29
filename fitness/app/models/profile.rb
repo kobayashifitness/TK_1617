@@ -9,6 +9,5 @@ class Profile < ActiveRecord::Base
   mount_uploader :image, ProfileImageUploader
 
   validates :name, presence: true
-  validates :sex, inclusion:{in: %w(male, female)}
 
 end
