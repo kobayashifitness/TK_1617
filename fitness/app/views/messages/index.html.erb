@@ -3,16 +3,10 @@
     <h1 class="panel-title">hogeさんからのメッセージ</h1>
 	</div>
   <div class="panel-body">
-	  <h2>
-	  <% (@messages).each do |message|%>
-		  <div>
-			  <%if message.user_id == current_user.id %>
-				  <br><span class="pull-left label label-info"><%= message.message%></span></br>
-			  <%else%><br><span class="pull-right label label-success"><%= message.message%></span></br>
-			  <%end%>
-		  </div>
-	  <% end %>
-	  </h2>
+     <div class="page">
+      <%= render 'chat' %>
+     </div>
+      <%= paginate @messages %>
 	  <h2>
 		  <%= form_for @message do |message|%>
 		  <span class="pull-right" ><%= message.text_field :message%></span>
@@ -21,4 +15,4 @@
 		  <span class="pull-right" ><%= message.submit "送信"%></span>
 	  <% end %>
 	  </h2>
-  </div>	
+  </div>
