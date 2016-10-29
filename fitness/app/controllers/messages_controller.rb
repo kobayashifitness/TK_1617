@@ -1,28 +1,22 @@
  class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_message, only: [:edit, :update, :destroy]
 
   # GET /messages
   # GET /messages.json
-  
+
   def chat
   	@messages = Message.where(user_id: current_user.id)
-	@chatusers = Profile.where(user_id: )
+    ids=[]
+    (@messages).each do |m|
+      ids.push(m.sent_userid)
+    end
+	  @chatusers = Profile.where(user_id: ids)
   end
-  
+
   def index
-  #  User.find(2).profile.name
-     @sent_userid = 1
-  #  @messages = Message.where(user_id:1, sent_userid:2).where(user_id:2, sent_userid:1)
-  #  @messages = Message.all
-
-     @messages = Message.where("user_id = ? or user_id = ?","1","2").where("sent_userid = ? or sent_userid = ?","1","2").page(params[:page]).per(8)
-
-     @message = Message.new()
   end
 
-  def chat
-    redirect_to '/wiki'
-  end
+
   # def messagelist
   #   @messages = Message.where(user_id: current_user.id)
   #   #@message_user = User.where(id: @messages.sent_userid)
@@ -31,6 +25,10 @@
   # GET /messages/1
   # GET /messages/1.json
   def show
+    @sent_userid = params[:id]
+    @messages = Message.where("user_id = ? or user_id = ?",current_user.id,@sent_userid).where("sent_userid = ? or sent_userid = ?",current_user.id,@sent_userid).page(params[:page]).per(8)
+
+    @message = Message.new()
   end
 
   # GET /messages/new
@@ -46,10 +44,10 @@
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
+    @id = @message.user_id.to_s
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to '/messages/'+ @id, notice: 'メッセージを送信しました' }
         format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
@@ -91,13 +89,9 @@
     # Never trust parameters from the scary internet, only allow the white list through.
 
     def message_params
-<<<<<<< HEAD
-	    params.require(:message).permit(:user_id, :sent_userid, :message)
-=======
 
 	    params.require(:message).permit(:user_id, :sent_userid, :message)
 
->>>>>>> 455b4dfe40078b7394f04932b27f4708bf44a6c0
     end
 
 end

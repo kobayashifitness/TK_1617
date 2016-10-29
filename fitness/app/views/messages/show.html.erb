@@ -1,15 +1,18 @@
-<div class="page-header">
-  <%= link_to messages_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_message_path(@message), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show message</h1>
-</div>
-
-<dl class="dl-horizontal">
-
-</dl>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+    <h1 class="panel-title"><%= Profile.find(@sent_userid).name%>さんとのメッセージ</h1>
+	</div>
+  <div class="panel-body">
+     <div class="page">
+      <%= render 'chat' %>
+     </div>
+      <%= paginate @messages %>
+	  <h2>
+		  <%= form_for @message do |message|%>
+		  <span class="pull-right" ><%= message.text_field :message%></span>
+		  <%= message.hidden_field :sent_userid, :value => current_user.id%>
+		  <%= message.hidden_field :user_id, :value => @sent_userid %>
+		  <span class="pull-right" ><%= message.submit "送信"%></span>
+	  <% end %>
+	  </h2>
+  </div>
