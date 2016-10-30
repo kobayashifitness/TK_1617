@@ -17,7 +17,6 @@ function SetOrderId() {
 </script>
 
 <% if user_signed_in? %>
-テスト
 <div class="row">
 
   <div class="col-sm-3">
@@ -27,9 +26,15 @@ function SetOrderId() {
       <%= link_to "/", { :class => "list-group-item" } do %>
       <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
       <% end %>
+<<<<<<< HEAD
+
+      <%= link_to "/profiles", { :class => "list-group-item" } do %>
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> プロフィール
+=======
       
       <%= link_to "/profiles", { :class => "list-group-item" } do %>
       <span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール
+>>>>>>> f35b0a6b5cff6c2b510ac4d411203df2bf541bca
       <% end %>
 
 	  <%= link_to "/chat", { :class => "list-group-item" } do %>
