@@ -5,8 +5,9 @@
       <a href="/profiles/<%= profile.user_id %>" class="list-group-item">
        <div class="row">
 
-            <div class="col-sm-2">
-              <h2><%= profile.name %></h2>
+            <div class="col-sm-4">
+              <p><h2><%= profile.name %></h2></p>
+              <h2><%=profile.comment%></h2>
             </div>
             <div class="col-sm-2">
               <h2><%= profile.address %></h2>
@@ -20,7 +21,7 @@
             <%end%>
             <h3>
               <% if profile.image? %>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <%= image_tag profile.image.url, :size => '250x250', :class => 'img-responsive' %>
                 </div>
               <%else%>
