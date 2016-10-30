@@ -73,7 +73,7 @@ class ProfilesController < ApplicationController
   end
 
   def search #検索ページ
-    if Profile.(current_user.id).sex == 'male'
+    if Profile.find(current_user.id).sex == 'male'
     @profiles =Profile.where(sex: 'male')
     else
     @profiles =Profile.all
