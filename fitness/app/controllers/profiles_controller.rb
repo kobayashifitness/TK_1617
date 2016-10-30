@@ -71,6 +71,10 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def search #検索ページ
+    @profiles =Profile.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
