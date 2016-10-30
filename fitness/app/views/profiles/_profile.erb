@@ -27,6 +27,12 @@
 						</div>
 					</div>
 				</div>
+        <% if @session_id != current_user.id %>
+          <%= link_to message_path(@profile.user_id), class: 'btn btn-primary' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+            メッセージをやりとり
+          <% end %>
+        <%end%>
 				<div class="col-lg-8">
 					<br />
 					<div class="row">
