@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.all
-    @profile = Profile.find_by(:user_id => current_user.id)
+    @profile = Profile.find_by(user_id: current_user.id)
     if @profile.nil?
       redirect_to :action => 'new'
     else
@@ -79,7 +80,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      logger.debug "------------------- call params ------------------"
-      params.require(:profile).permit(:name, :sex, :comment, :address, :birthday, :image)
+      params.require(:profile).permit(:user_id, :name, :sex, :comment, :address, :birthday, :image)
     end
 end
