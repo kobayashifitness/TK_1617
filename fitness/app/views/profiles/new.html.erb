@@ -1,9 +1,17 @@
-<div class="page-header">
-  <%= link_to profiles_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <h1>New profile</h1>
-</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">プロフィール編集</h3>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <%= link_to profiles_path, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Back
+      <% end %>
+      <h1>New profile</h1>
+    </div>
 
-<%= render 'form' %>
+    <%= render 'form' %>
+  </div>
+</div>
+</div>
