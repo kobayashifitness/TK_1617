@@ -18,6 +18,8 @@
 					<div class="col-xs-9 col-xs-offset-1">
 						<% if @profile.image? %><br>
 							<%= image_tag @profile.image.url, :size => '250x250', :class => 'img-responsive' %>
+            <%else%>
+              <%= image_tag 'noimage.jpg', :size => '250x250' %>
 						<% end %>
 						<h3 class="text-center"><%= @profile.name %></h3>
 						<div class="text-center">
