@@ -1,5 +1,6 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
+  belongs_to :muscle
 
   has_many :heights
   has_many :weights

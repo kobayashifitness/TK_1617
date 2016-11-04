@@ -1,3 +1,4 @@
+<% if Profile.find(@session_id).public_profile == 1 ||  @session_id == current_user.profile.id  %>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">プロフィール</h3>
@@ -7,3 +8,9 @@
   </div>
 </div>
 </div>
+
+<% else %>
+<div class="starter-template">
+  <a class="btn btn-primary btn-lg" href="/" </a>
+</div>
+<% end %>

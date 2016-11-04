@@ -1,58 +1,60 @@
-<div class="list-group">
+<div class ="container">
+ <div class="list-group">
   <a href="#" class="list-group-item active">検索結果　一覧</a>
-  <div class ="container">
     <% @profiles.each do |profile| %>
-      <a href="/profiles/<%= profile.user_id %>" class="list-group-item">
-       <div class="row">
+      <% if profile.user_id != current_user.id%>
+        <a href="/profiles/<%= profile.id %>" class="list-group-item">
+         <div class="row">
 
-            <div class="col-sm-4">
-              <p><h2><%= profile.name %></h2></p>
-              <h2><%=profile.comment%></h2>
-              <table class="table table-inverse table-bordered">
-                <thead>
-                  <tr>
-                    <th>ベンチプレス</th>
-                    <th>スクワット</th>
-                    <th>デットリフト</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>100</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <% if profile.address != nil %>
-              <div class="col-sm-2">
-                <h2><%= profile.address %></h2>
-              </div>
-            <%else%>
-              <div class="col-sm-2"><h2>未設定</h2></div>
-
-            <%end%>
-            <% if profile.birthday != nil %>
-              <div class="col-sm-2">
-                <h2><%= Time.now.year - profile.birthday.year %>歳<h2>
-              </div>
-            <%else%>
-              <div class="col-sm-2"><h2>未設定</h2></div>
-
-            <%end%>
-
-            <% if profile.image? %>
               <div class="col-sm-4">
-                <%= image_tag profile.image.url, :size => '250x250', :class => 'img-responsive' %>
+                <p><h2><%= profile.name %></h2></p>
+                <h2><%=profile.comment%></h2>
+                <table class="table table-inverse table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ベンチプレス</th>
+                      <th>スクワット</th>
+                      <th>デットリフト</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            <%else%>
-              <div class="col-sm-offset-4"></div>
-                <%= image_tag 'noimage.jpg', :size => '250x250' %>
-            <% end %>
+              <% if profile.address != nil %>
+                <div class="col-sm-2">
+                  <h2><%= profile.address %></h2>
+                </div>
+              <%else%>
+                <div class="col-sm-2"><h2>未設定</h2></div>
 
-          </div>
-      </a>
+              <%end%>
+              <% if profile.birthday != nil %>
+                <div class="col-sm-2">
+                  <h2><%= Time.now.year - profile.birthday.year %>歳<h2>
+                </div>
+              <%else%>
+                <div class="col-sm-2"><h2>未設定</h2></div>
+
+              <%end%>
+
+              <% if profile.image? %>
+                <div class="col-sm-4">
+                  <%= image_tag profile.image.url, :size => '250x250', :class => 'img-responsive' %>
+                </div>
+              <%else%>
+                <div class="col-sm-offset-4"></div>
+                  <%= image_tag 'noimage.jpg', :size => '250x250' %>
+              <% end %>
+
+            </div>
+        </a>
+      <% end %>
     <% end %>
   </div>
 </div>

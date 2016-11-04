@@ -17,8 +17,12 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @profile = Profile.find(params[:id])
-    @session_id = params[:id].to_i
+    if Profile.find(params[:id].to_i).public_profile == 1 ||  params[:id].to_i == current_user.profile.id
+      @profile = Profile.find(params[:id])
+      @session_id = params[:id].to_i
+    else
+      redirect_to '/'
+    end
   end
 
   # GET /profiles/new
@@ -74,9 +78,9 @@ class ProfilesController < ApplicationController
 
   def search #検索ページ
     if Profile.find(current_user.id).sex == 'male'
-    @profiles =Profile.where(sex: 'male')
+    @profiles =Profile.where(sex: 'male').where(public_profile: 1)
     else
-    @profiles =Profile.all
+    @profiles =Profile.all.where(public_profile: 1)
     end
   end
 
@@ -88,6 +92,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :name, :sex, :comment, :address, :birthday, :image)
+      params.require(:profile).permit(:user_id, :name, :sex, :comment, :address, :birthday, :image,:muscle_id,:public_profile)
     end
 end

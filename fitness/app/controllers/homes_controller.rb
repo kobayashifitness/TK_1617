@@ -135,7 +135,7 @@ class HomesController < ApplicationController
  end
  def wiki
    @events = Event.all
-   @muscles = Muscle.all
+   @muscles = Muscle.first(9)
  end
 
 end
