@@ -174,7 +174,13 @@
          <div class="row">
 
               <div class="col-sm-4">
-                <p><h2><%= profile.name %></h2></p>
+                <% if profile.sex == 'female'%>
+                  <FONT color="#ff00ff">
+                  <p><h2><%= profile.name %></h2></p>
+                  </FONT>
+                <%else%>
+                  <p><h2><%= profile.name %></h2></p>
+                <%end%>
                 <h2><%=profile.comment%></h2>
                 <table class="table table-inverse table-bordered">
                   <thead>
@@ -207,28 +213,35 @@
               </div>
               <% if profile.address != nil %>
                 <div class="col-sm-2">
-                  <h2><%= profile.address %></h2>
+                  <h4><%= profile.address %></h4>
                 </div>
               <%else%>
-                <div class="col-sm-2"><h2>未設定</h2></div>
+                <div class="col-sm-2"><h4>未設定</h4></div>
 
               <%end%>
               <% if profile.birthday != nil %>
                 <div class="col-sm-2">
-                  <h2><%= Time.now.year - profile.birthday.year %>歳<h2>
+                  <h4><%= Time.zone.now.year - profile.birthday.year %>歳<h4>
                 </div>
               <%else%>
-                <div class="col-sm-2"><h2>未設定</h2></div>
+                <div class="col-sm-2"><h4>未設定</h4></div>
 
+              <%end%>
+              <% if profile.muscle_id != nil %>
+                <div class="col-sm-2">
+                  <h4><%= Muscle.find(profile.muscle_id).part %><h4>
+                </div>
+              <%else%>
+                <div class="col-sm-2"><h4>未設定</h4></div>
               <%end%>
 
               <% if profile.image? %>
-                <div class="col-sm-4">
-                  <%= image_tag profile.image.url, :size => '250x250', :class => 'img-responsive' %>
+                <div class="col-sm-2">
+                  <%= image_tag profile.image.url, :size => '150x150', :class => 'img-responsive' %>
                 </div>
               <%else%>
-                <div class="col-sm-offset-4"></div>
-                  <%= image_tag 'noimage.jpg', :size => '250x250' %>
+                <div class="col-sm-offset-2"></div>
+                  <%= image_tag 'noimage.jpg', :size => '150x150' %>
               <% end %>
 
             </div>

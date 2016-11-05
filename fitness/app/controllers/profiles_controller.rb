@@ -118,8 +118,9 @@ class ProfilesController < ApplicationController
       @muscle_id = @muscle_id.values[0]
     end
     if Profile.find(current_user.id).sex == 'male'
-    @profiles =Profile.where(sex: 'male').where(public_profile: 1).where('birthday >=? AND birthday <= ?',@date - @max_age.to_i.year ,@date - @min_age.to_i.year )
-      if @muscle_id != nil
+      @profiles = Profile.where(sex: 'male').where(public_profile: 1).where('birthday >=? AND birthday <= ?',@date - @max_age.to_i.year ,@date - @min_age.to_i.year )
+      if @muscle_id != nil && @muscle_id != ""
+      @profiles = @profiles.where(muscle_id: @muscle_id)
       end
       if @adress != nil
       end
