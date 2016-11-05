@@ -77,10 +77,55 @@ class ProfilesController < ApplicationController
   end
 
   def search #検索ページ
+    @min_age = params[:min_age]
+    @max_age = params[:max_age]
+    @muscle_id = params[:muscle]
+    @sex = params[:sex]
+    @adress = params[:address]
+    @min_weight_bench = params[:min_weight_bench]
+    @max_weight_bench = params[:max_weight_bench]
+    @min_weight_ded = params[:min_weight_ded]
+    @max_weight_ded = params[:max_weight_ded]
+    @min_weight_full = params[:min_weight_full]
+    @max_weight_full = params[:max_weight_full]
+    t = Time.zone.now
+    @date = t.strftime("%Y-%m-%d").to_date
+    if @min_age == nil
+      @min_age = 18
+    end
+    if @max_age == nil
+       @max_age = 100
+    end
+    if @min_weight_bench == nil
+      @min_weight_bench = 0
+    end
+    if @min_weight_ded == nil
+      @min_weight_ded = 0
+    end
+    if @min_weight_full == nil
+      @min_weight_full = 0
+    end
+    if @max_weight_bench == nil
+      @max_weight_bench = 200
+    end
+    if @max_weight_ded == nil
+      @max_weight_ded = 200
+    end
+    if @max_weight_full == nil
+      @max_weight_full = 200
+    end
+    if @muscle_id != nil
+      @muscle_id = @muscle_id.values[0]
+    end
     if Profile.find(current_user.id).sex == 'male'
-    @profiles =Profile.where(sex: 'male').where(public_profile: 1)
+    @profiles =Profile.where(sex: 'male').where(public_profile: 1).where('birthday >=? AND birthday <= ?',@date - @max_age.to_i.year ,@date - @min_age.to_i.year )
+      if @muscle_id != nil
+      end
+      if @adress != nil
+      end
+
     else
-    @profiles =Profile.all.where(public_profile: 1)
+    @profiles =Profile.all.where(public_profile: 1).where(public_profile: 1).where('birthday >=? AND birthday <= ?',@date - @max_age.to_i.year ,@date - @min_age.to_i.year )
     end
   end
 

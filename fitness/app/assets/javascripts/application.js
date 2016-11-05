@@ -32,3 +32,13 @@
 //= require jqueryui-timepicker-addon/dist/i18n/jquery-ui-timepicker-ja
 //= require jquery.infinitescroll
 $(document).on('turbolinks:load',function(){  $('.datetimepicker').datetimepicker()});
+$('.range-slider').jRange({
+    from: 0,
+    to: 100,
+    step: 1,
+    scale: [0,25,50,75,100],
+    format: '%s',
+    width: 300,
+    showLabels: true,
+    isRange : true
+});

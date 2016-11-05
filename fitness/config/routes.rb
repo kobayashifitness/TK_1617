@@ -21,6 +21,7 @@ RailsMuscle::Application.routes.draw do
   resources :messages
   resources :profiles
   get '/search' => 'profiles#search'
+  post '/search' => 'profiles#search'
   get '/chat' => 'messages#chat'
   get '/:date/diary' => 'homes#diary', as: 'diary_home'
   get '/diary_all' => 'homes#diary_all'
