@@ -27,18 +27,65 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
         <%= link_to "Muscle Forward", "/", class: "navbar-brand" %>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" id="nav_targets">
+        <ul class="nav navbar-nav">
+        <!-- ドロップダウン -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "/", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> ホーム
+                <% end %>
+              </li>
+                <%= link_to "/profiles", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> プロフィール
+                <% end %>
+              <li>
+                <%= link_to "/chat", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> メッセージ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/search", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 検索
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/ranking", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-king" aria-hidden="true"></span> ランキング
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/graph", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> データ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/articles", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span> 知識
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/users/edit", { :class => "list-group-item" } do %>
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 設定
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
-	  <% if user_signed_in? %>
-	     <li class="navbar-text">ようこそ <%= current_user.email %> さん</li>
-	     <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
-	  <% else %>
-	     <li class="navbar-text">ようこそ ゲスト さん</li>
-	     <li><%= link_to "サインイン", new_user_session_path %></li>
-       <li><%= link_to "Twitterでサインイン", user_twitter_omniauth_authorize_path %></li>
-	  <% end %>
+          <% if user_signed_in? %>
+             <li class="navbar-text">ようこそ <%= current_user.email %> さん</li>
+             <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+             <li class="navbar-text">ようこそ ゲスト さん</li>
+             <li><%= link_to "サインイン", new_user_session_path %></li>
+             <li><%= link_to "Twitterでサインイン", user_twitter_omniauth_authorize_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>

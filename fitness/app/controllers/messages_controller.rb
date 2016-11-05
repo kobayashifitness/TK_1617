@@ -5,10 +5,14 @@
   # GET /messages.json
 
   def chat
-  	@messages = Message.where(user_id: current_user.id)
-    ids=[]
-    (@messages).each do |m|
+    @recive_messages = Message.where(user_id: current_user.id)
+    @sent_messages = Message.where(sent_userid: current_user.id)
+    ids = []
+    (@recive_messages).each do |m|
       ids.push(m.sent_userid)
+    end
+    (@sent_messages).each do |m|
+      ids.push(m.user_id)
     end
 	  @chatusers = Profile.where(user_id: ids)
   end
