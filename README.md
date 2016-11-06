@@ -66,6 +66,7 @@ password:  men1pass
 * メッセージ機能
 * プロフィール画面
 * デバック
+* ユーザー検索機能（筋トレ重量検索,筋肉部位マッチング）
 ## 開発技術
 Webアプリケーション
 
@@ -92,6 +93,17 @@ Muscle Fowerd(以前に開発したwebサイト)
 * メッセージ一覧
 * ユーザー検索機能（検索項目：地域,年齢,トレーニングで扱う重量,好きな筋肉（筋肉マッチング）,性別(女性ユーザー限定)）
 
+##### 主に編集したコード
+メッセージ機能
 
+fitness/app/controllers/messages_controller.rb
+
+fitness/app/views/messages/ 以下
+
+プロfィ―ル画面,ユーザー検索ページ
+
+fitness/app/controllers/profiles_controller.rb
+
+fitness/app/views/profiles/ 以下
 #### 研究内容（任意）
 特になし
