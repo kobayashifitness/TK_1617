@@ -1,13 +1,13 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
-    <h1 class="panel-title"><%= Profile.find(@sent_userid).name%>さんとのメッセージ</h1>
+    <h1 class="panel-title"><%= Profile.find_by(user_id: @sent_userid).name%>さんとのメッセージ</h1>
 	</div>
   <div class="panel-body">
-		<% if Profile.find(@sent_userid).image? %>
+		<% if Profile.find_by(user_id: @sent_userid).image? %>
 			<div class="container">
 					<div class="row">
 						<div class="col-sm-4">
-							<%= image_tag Profile.find(@sent_userid).image.url, :size => '250x250', :class => 'img-responsive' %>
+							<%= image_tag Profile.find_by(user_id: @sent_userid).image.url, :size => '250x250', :class => 'img-responsive' %>
 						</div>
 						<div class="col-sm-offset-8"></div>
 					</div>

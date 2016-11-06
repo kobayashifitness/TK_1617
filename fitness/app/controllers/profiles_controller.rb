@@ -77,6 +77,7 @@ class ProfilesController < ApplicationController
   end
 
   def search #検索ページ
+    @flag = params[:flag]
     @min_age = params[:min_age]
     @max_age = params[:max_age]
     @muscle_id = params[:muscle]
@@ -88,6 +89,7 @@ class ProfilesController < ApplicationController
     @max_weight_ded = params[:max_weight_ded]
     @min_weight_full = params[:min_weight_full]
     @max_weight_full = params[:max_weight_full]
+
     t = Time.zone.now
     @date = t.strftime("%Y-%m-%d").to_date
     if @min_age == nil
@@ -117,6 +119,7 @@ class ProfilesController < ApplicationController
     if @muscle_id != nil
       @muscle_id = @muscle_id.values[0]
     end
+
     # 年齢による絞り込み
     @profiles = Profile.where(public_profile: 1).where('birthday >=? AND birthday <= ?',@date - @max_age.to_i.year ,@date - @min_age.to_i.year )
     # userが男性の場合
@@ -129,77 +132,78 @@ class ProfilesController < ApplicationController
            @profiles = @profiles.where(sex: @sex)
       end
     end
-    # 住所による絞り込み
-    if @address != nil && @address != ""
-      @profiles = @profiles.where(address: @address)
-    end
-    # 筋肉による絞り込み
-    if @muscle_id != nil && @muscle_id != ""
-      @profiles = @profiles.where(muscle_id: @muscle_id)
-    end
-    #重量による絞り込み
-    min_bench_ids = []
-    max_bench_ids = []
-    min_ded_ids = []
-    max_ded_ids = []
-    min_full_ids = []
-    max_full_ids = []
-    @weight_profiles = @profiles
-    (@weight_profiles).each do |profile|
-      @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight)
-      if @weight != nil
-        if @weight >= @min_weight_bench.to_i
-          min_bench_ids.push(profile.id)
+    if @flag != nil
+      # 住所による絞り込み
+      if @address != nil && @address != ""
+        @profiles = @profiles.where(address: @address)
+      end
+      # 筋肉による絞り込み
+      if @muscle_id != nil && @muscle_id != ""
+        @profiles = @profiles.where(muscle_id: @muscle_id)
+      end
+      #重量による絞り込み
+      min_bench_ids = []
+      max_bench_ids = []
+      min_ded_ids = []
+      max_ded_ids = []
+      min_full_ids = []
+      max_full_ids = []
+      @weight_profiles = @profiles
+      (@weight_profiles).each do |profile|
+        @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight)
+        if @weight != nil
+          if @weight >= @min_weight_bench.to_i
+            min_bench_ids.push(profile.id)
+          end
+          if @weight <= @max_weight_bench.to_i
+            max_bench_ids.push(profile.id)
+          end
         end
-        if @weight <= @max_weight_bench.to_i
-          max_bench_ids.push(profile.id)
+        @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight)
+        if @weight != nil
+          if @weight >= @min_weight_ded.to_i
+            min_ded_ids.push(profile.id)
+          end
+          if @weight <= @max_weight_ded.to_i
+            max_ded_ids.push(profile.id)
+          end
+        end
+        @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight)
+        if @weight != nil
+          if @weight >= @min_weight_full.to_i
+            min_full_ids.push(profile.id)
+          end
+          if @weight <= @max_weight_full.to_i
+            max_full_ids.push(profile.id)
+          end
         end
       end
-      @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight)
-      if @weight != nil
-        if @weight >= @min_weight_ded.to_i
-          min_ded_ids.push(profile.id)
-        end
-        if @weight <= @max_weight_ded.to_i
-          max_ded_ids.push(profile.id)
-        end
+
+      if @min_weight_bench.to_i > 0
+
+        @profiles = @profiles.where(id: min_bench_ids)
       end
-      @weight = User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight)
-      if @weight != nil
-        if @weight >= @min_weight_full.to_i
-          min_full_ids.push(profile.id)
-        end
-        if @weight <= @max_weight_full.to_i
-          max_full_ids.push(profile.id)
-        end
+      if @max_weight_bench.to_i < 200
+
+        @profiles = @profiles.where(id: max_bench_ids)
+      end
+      if @min_weight_ded.to_i > 0
+
+        @profiles = @profiles.where(id: min_ded_ids)
+      end
+      if  @max_weight_ded.to_i < 200
+
+        @profiles = @profiles.where(id: max_ded_ids)
+      end
+      if @min_weight_full.to_i > 0
+
+        @profiles = @profiles.where(id: min_full_ids)
+      end
+      if @max_weight_full.to_i < 200
+
+        @profiles = @profiles.where(id: max_full_ids)
       end
     end
-
-    if @min_weight_bench.to_i > 0
-
-      @profiles = @profiles.where(id: min_bench_ids)
-    end
-    if @max_weight_bench.to_i < 200
-
-      @profiles = @profiles.where(id: max_bench_ids)
-    end
-    if @min_weight_ded.to_i > 0
-
-      @profiles = @profiles.where(id: min_ded_ids)
-    end
-    if  @max_weight_ded.to_i < 200
-
-      @profiles = @profiles.where(id: max_ded_ids)
-    end
-    if @min_weight_full.to_i > 0
-
-      @profiles = @profiles.where(id: min_full_ids)
-    end
-    if @max_weight_full.to_i < 200
-      
-      @profiles = @profiles.where(id: max_full_ids)
-    end
-
 
   end
   private

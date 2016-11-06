@@ -157,6 +157,8 @@
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
+
+              <%= hidden_field_tag :flag ,1%>
               <%= submit_tag '検索'%>
             </div>
           </div>
@@ -165,90 +167,91 @@
     </div>
   </div>
 </div>
+<%if @flag != nil%>
+  <div class ="container">
+   <div class="list-group">
+    <a href="#" class="list-group-item active">検索結果　一覧</a>
+      <% @profiles.each do |profile| %>
+        <% if profile.user_id != current_user.id%>
+          <a href="/profiles/<%= profile.id %>" class="list-group-item">
+           <div class="row">
 
-<div class ="container">
- <div class="list-group">
-  <a href="#" class="list-group-item active">検索結果　一覧</a>
-    <% @profiles.each do |profile| %>
-      <% if profile.user_id != current_user.id%>
-        <a href="/profiles/<%= profile.id %>" class="list-group-item">
-         <div class="row">
+                <div class="col-sm-4">
 
-              <div class="col-sm-4">
-    
-                <% if profile.sex == 'female'%>
-                  <FONT color="#ff00ff">
-                  <p><h2><%= profile.name %></h2></p>
-                  </FONT>
+                  <% if profile.sex == 'female'%>
+                    <FONT color="#ff00ff">
+                    <p><h2><%= profile.name %></h2></p>
+                    </FONT>
+                  <%else%>
+                    <p><h2><%= profile.name %></h2></p>
+                  <%end%>
+                  <h4><%=profile.comment%></h4>
+                  <table class="table table-inverse table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ベンチプレス</th>
+                        <th>フルスクワット</th>
+                        <th>デッドリフト</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight) != nil %>
+                              <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight) %>
+                          <%end%>
+                        </td>
+                        <td>
+                          <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight) != nil %>
+                              <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight) %>
+                          <%end%>
+                        </td>
+                        <td>
+                          <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight) != nil %>
+                              <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight) %>
+                          <%end%>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <% if profile.address != nil %>
+                  <div class="col-sm-2">
+                    <h4><%= profile.address %></h4>
+                  </div>
                 <%else%>
-                  <p><h2><%= profile.name %></h2></p>
+                  <div class="col-sm-2"><h4>未設定</h4></div>
+
                 <%end%>
-                <h2><%=profile.comment%></h2>
-                <table class="table table-inverse table-bordered">
-                  <thead>
-                    <tr>
-                      <th>ベンチプレス</th>
-                      <th>フルスクワット</th>
-                      <th>デッドリフト</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight) != nil %>
-                            <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'ベンチプレス').id).maximum(:weight) %>
-                        <%end%>
-                      </td>
-                      <td>
-                        <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight) != nil %>
-                            <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'フルスクワット').id).maximum(:weight) %>
-                        <%end%>
-                      </td>
-                      <td>
-                        <% if User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight) != nil %>
-                            <%= User.find(profile.user_id).muscle_diaries.where(diary_date: DateTime.now - 3.month...DateTime.now + 1.day).where(event_id: Event.find_by(event_name: 'デッドリフト').id).maximum(:weight) %>
-                        <%end%>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <% if profile.birthday != nil %>
+                  <div class="col-sm-2">
+                    <h4><%= Time.zone.now.year - profile.birthday.year %>歳<h4>
+                  </div>
+                <%else%>
+                  <div class="col-sm-2"><h4>未設定</h4></div>
+
+                <%end%>
+                <% if profile.muscle_id != nil %>
+                  <div class="col-sm-2">
+                    <h4><%= Muscle.find(profile.muscle_id).part %><h4>
+                  </div>
+                <%else%>
+                  <div class="col-sm-2"><h4>未設定</h4></div>
+                <%end%>
+
+                <% if profile.image? %>
+                  <div class="col-sm-2">
+                    <%= image_tag profile.image.url, :size => '200x200', :class => 'img-responsive' %>
+                  </div>
+                <%else%>
+                  <div class="col-sm-offset-2"></div>
+                    <%= image_tag 'noimage.jpg', :size => '200x200' %>
+                <% end %>
+
               </div>
-              <% if profile.address != nil %>
-                <div class="col-sm-2">
-                  <h4><%= profile.address %></h4>
-                </div>
-              <%else%>
-                <div class="col-sm-2"><h4>未設定</h4></div>
-
-              <%end%>
-              <% if profile.birthday != nil %>
-                <div class="col-sm-2">
-                  <h4><%= Time.zone.now.year - profile.birthday.year %>歳<h4>
-                </div>
-              <%else%>
-                <div class="col-sm-2"><h4>未設定</h4></div>
-
-              <%end%>
-              <% if profile.muscle_id != nil %>
-                <div class="col-sm-2">
-                  <h4><%= Muscle.find(profile.muscle_id).part %><h4>
-                </div>
-              <%else%>
-                <div class="col-sm-2"><h4>未設定</h4></div>
-              <%end%>
-
-              <% if profile.image? %>
-                <div class="col-sm-2">
-                  <%= image_tag profile.image.url, :size => '150x150', :class => 'img-responsive' %>
-                </div>
-              <%else%>
-                <div class="col-sm-offset-2"></div>
-                  <%= image_tag 'noimage.jpg', :size => '150x150' %>
-              <% end %>
-
-            </div>
-        </a>
+          </a>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+<%end%>
